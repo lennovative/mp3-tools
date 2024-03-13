@@ -4,15 +4,10 @@ from mutagen.easyid3 import EasyID3
 
 
 def change_artist_tags_in_folder(folder_path):
-    try:
-        for root, dirs, files in os.walk(folder_path):
-            for file in files:
-                if file.endswith(".mp3"):
-                    mp3_file = os.path.join(root, file)
-                    print("working on: {}".format(file))
-                    change_artist_tags(mp3_file)
-    except Exception as e:
-        print(f"Error processing folder {folder_path}: {str(e)}")
+    for filename in os.listdir(folder_path):
+        if filename.endswith(".mp3"):
+            mp3_file = os.path.join(folder_path, filename)
+            change_artist_tags(mp3_file)
 
 
 def change_artist_tags(mp3_file):
