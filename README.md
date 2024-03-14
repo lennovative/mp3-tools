@@ -1,2 +1,3 @@
 # mp3-tools
-rename or edit mp3 files
+- edit mp3 file tags
+- rename mp3 files based on tags
