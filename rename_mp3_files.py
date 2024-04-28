@@ -9,10 +9,12 @@ from mutagen.id3 import ID3
 # Function to normalize strings to work as filenames
 def normalize_string(s):
     # Remove non-ASCII characters
-    filename = ''.join(c if ord(c) < 128 else '_' for c in unicodedata.normalize('NFKD', s))
+    filename = unicodedata.normalize('NFKD', s)
+    filename = ''.join(c for c in filename if not unicodedata.combining(c))
+    filename = ''.join(c if ord(c) < 128 else '_' for c in filename)
     # Remove control characters
     filename = ''.join(c for c in filename if unicodedata.category(c)[0] != 'C')
-    # Replace characters not allowed in filename with underscores
+    # Replace characters not allowed in filename
     filename = re.sub(r'[<>\{\}@%&$€#/\\|?!*.]', '_', filename)
     filename = re.sub(r"['\":\[\]]", "", filename)
     filename = re.sub("  ", " ", filename)
