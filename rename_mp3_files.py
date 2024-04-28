@@ -13,7 +13,9 @@ def normalize_string(s):
     # Remove control characters
     filename = ''.join(c for c in filename if unicodedata.category(c)[0] != 'C')
     # Replace characters not allowed in filename with underscores
-    filename = re.sub(r'[<>:"/\\|?*.]', '_', filename)
+    filename = re.sub(r'[<>\{\}@%&$€#/\\|?!*.]', '_', filename)
+    filename = re.sub(r"['\":\[\]]", "", filename)
+    filename = re.sub("  ", " ", filename)
     return filename
 
 
