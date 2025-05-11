@@ -19,4 +19,4 @@ def flatten_directory(directory):
             print(f"Deleted directory: {dir_path}")
 
 # Flatten the specified directory
-flatten_directory('./')  # Replace './' with the path to the directory you want to flatten
+flatten_directory('./')
